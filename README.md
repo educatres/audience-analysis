@@ -51,10 +51,10 @@ cd <your-repository-folder>
 
 ## 啟動方式
 
-建議使用本機 HTTP server 啟動，讓瀏覽器能穩定使用攝影機權限。
+建議使用附帶的本機 proxy 啟動。CGU Gateway 目前不允許 GitHub Pages 直接跨來源呼叫，直接在 GitHub Pages 使用 CGU 來源會出現 `Failed to fetch`。
 
 ```bash
-python3 -m http.server 8000
+python3 proxy_server.py
 ```
 
 啟動後在瀏覽器開啟：
@@ -82,6 +82,8 @@ http://localhost:8000/
 10. 需要停止定時分析時，按 **暫停**。
 11. 需要清空頁面紀錄時，按 **清除紀錄**。
 
+使用 CGU LLM 時，請將 Endpoint 設為 `http://localhost:8000/api`，讓本機 proxy 代替瀏覽器呼叫 CGU Gateway。OpenAI 或其他已開放瀏覽器 CORS 的服務，仍可直接使用其 API endpoint。
+
 ## API 設定說明
 
 | 欄位 | 說明 |
@@ -97,7 +99,7 @@ http://localhost:8000/
 
 | 來源 | 預設 Endpoint | 預設模型 |
 | --- | --- | --- |
-| 長庚 CGU LLM | `https://air.cgu.edu.tw/cgullmapi/v1` | `gpt-6-luna` |
+| 長庚 CGU LLM | `http://localhost:8000/api`（本機 proxy） | `gpt-6-luna` |
 | OpenAI | `https://api.openai.com/v1` | `gpt-6-luna` |
 | 自定義 | 自行輸入 | 自行輸入 |
 

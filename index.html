@@ -623,7 +623,7 @@
             </div>
             <div class="field endpoint-field">
               <label for="apiEndpoint">Endpoint</label>
-              <input id="apiEndpoint" type="url" autocomplete="off" spellcheck="false" value="https://air.cgu.edu.tw/cgullmapi/v1" placeholder="https://api.openai.com/v1 或完整 /responses endpoint">
+              <input id="apiEndpoint" type="url" autocomplete="off" spellcheck="false" value="http://localhost:8000/api" placeholder="https://api.openai.com/v1 或完整 /responses endpoint">
             </div>
             <div class="field key-field">
               <label for="apiKey">API key / Authorization</label>
@@ -752,7 +752,7 @@
     const API_PROVIDERS = {
       cgu: {
         label: "長庚 CGU LLM API",
-        endpoint: "https://air.cgu.edu.tw/cgullmapi/v1",
+        endpoint: "http://localhost:8000/api",
         model: "gpt-6-luna"
       },
       openai: {
@@ -1203,7 +1203,11 @@
           body: JSON.stringify(buildPayload(imageDataUrl, apiConfig.model))
         });
       } catch (error) {
-        throw new Error(`無法連線到 ${apiConfig.providerName}：${error.message || "可能是網路、CORS 或瀏覽器安全限制"}`);
+        const detail = error && error.message ? error.message : "可能是網路、CORS 或瀏覽器安全限制";
+        if (apiConfig.responsesUrl.includes("air.cgu.edu.tw") && /failed to fetch|networkerror/i.test(detail)) {
+          throw new Error("CGU LLM API 不允許 GitHub Pages 直接跨來源呼叫。請在本機執行 proxy_server.py，並將 Endpoint 改為 http://localhost:8000/api，或請 CGU Gateway 開放目前網站來源的 CORS。用瀏覽器直接連線不會送出影像。");
+        }
+        throw new Error(`無法連線到 ${apiConfig.providerName}：${detail}`);
       }
 
       const responseText = await response.text();
