@@ -97,8 +97,8 @@ http://localhost:8000/
 
 | 來源 | 預設 Endpoint | 預設模型 |
 | --- | --- | --- |
-| 長庚 CGU LLM | `https://air.cgu.edu.tw/cgullmapi/v1` | `gpt-5.4-mini` |
-| OpenAI | `https://api.openai.com/v1` | `gpt-4.1-mini` |
+| 長庚 CGU LLM | `https://air.cgu.edu.tw/cgullmapi/v1` | `gpt-6-luna` |
+| OpenAI | `https://api.openai.com/v1` | `gpt-6-luna` |
 | 自定義 | 自行輸入 | 自行輸入 |
 
 ## 畫面與指標

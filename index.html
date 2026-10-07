@@ -631,13 +631,10 @@
             </div>
             <div class="field model-field">
               <label for="model">模型</label>
-              <input id="model" type="text" list="modelSuggestions" autocomplete="off" spellcheck="false" value="gpt-5.4-mini" placeholder="例如 gpt-5.4-mini、gpt-5.5">
+              <input id="model" type="text" list="modelSuggestions" autocomplete="off" spellcheck="false" value="gpt-6-luna" placeholder="例如 gpt-6-luna、gpt-5.6-luna">
               <datalist id="modelSuggestions">
-                <option value="gpt-5.5"></option>
-                <option value="gpt-5.4"></option>
-                <option value="gpt-5.4-mini"></option>
-                <option value="gpt-5.1"></option>
-                <option value="gpt-4.1-mini"></option>
+                <option value="gpt-6-luna"></option>
+                <option value="gpt-5.6-luna"></option>
               </datalist>
             </div>
             <div class="field interval-field">
@@ -756,12 +753,12 @@
       cgu: {
         label: "長庚 CGU LLM API",
         endpoint: "https://air.cgu.edu.tw/cgullmapi/v1",
-        model: "gpt-5.4-mini"
+        model: "gpt-6-luna"
       },
       openai: {
         label: "OpenAI API",
         endpoint: "https://api.openai.com/v1",
-        model: "gpt-4.1-mini"
+        model: "gpt-6-luna"
       },
       custom: {
         label: "自定義 API",
